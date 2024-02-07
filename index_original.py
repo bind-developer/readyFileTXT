@@ -9,17 +9,19 @@ rows = 1
 num_change = 1
 # Abrimos el archivo en modo lectura.
 # encoding='utf-8'
-text_out = open('LE2060041427620231100130100001111_out.txt', 'w')
-with open("LE2060041427620231100130100001111.TXT","r",errors='ignore') as file:
+
+# LE2060041427620231100130100001111.TXT
+text_out = open('LE2049302061820230900130100001111_out.TXT', 'w')
+with open("LE2049302061820230900130100001111.TXT","r",errors='ignore') as file:
 
     # Iteramos el archivo abierto con readline()
     print(file)
     for line in file:
         strline=line.rstrip()
         line_split = strline.split("|")
-        if line_split[13] in ('02','03'):
-            if len(line_split[12])==9:
-                print(rows, 'CUO: ' + line_split[1], '|', 'NUM CORRELATIVO: ' + line_split[12])
+        if line_split[13] in ('03','04'):
+            if len(line_split[12]) != 0:
+                print(rows, 'CUO: ' + line_split[1], '|', 'NUM CORRELATIVO: ' + line_split[23])
                 strnum_correlativo=line_split[12]
                 intnum_correlativo=int(strnum_correlativo)
                 strline=strline.replace(strnum_correlativo, str(intnum_correlativo))
@@ -28,4 +30,4 @@ with open("LE2060041427620231100130100001111.TXT","r",errors='ignore') as file:
         text_out.write(strline + '\n')
         rows += 1
     text_out.close()
-    print("COUNT ROWS UPDATE: ",num_change)
+    print("COUNT ROWS CHANGE LONGETU EN LA COLUMNA 12: ",num_change)
